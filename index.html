@@ -1,96 +1,910 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pausing Operations Until 2031</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0f0f0f;
-      color: #fafafa;
-      margin: 0;
-      padding: 3rem 1.5rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laius Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-1: #5C00FF;
+            --primary-2: #2FE8C6;
+            --text-primary: #3A3A3F;
+            --text-secondary: #666;
+            --bg-white: #ffffff;
+            --bg-light: #f8f9fa;
+            --border-light: #e9ecef;
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
 
-    .container {
-      flex: 1;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .footer-note {
-      text-align: center;
-      margin: 2rem 0;
-      font-size: 0.85rem;
-      color: #bbb;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    h1 {
-      color: #ffd700;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-white);
+            overflow-x: hidden;
+        }
 
-    h2 {
-      color: #ffd700;
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+        }
 
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1.25rem;
-    }
-  </style>
+        /* nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-1);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-1);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border: 2px solid transparent;
+            background: none;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary-1);
+            color: white;
+            border-color: var(--primary-1);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-2);
+            border-color: var(--primary-2);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            color: var(--primary-1);
+            border-color: var(--primary-1);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-1);
+            color: white;
+        }
+
+        .btn-outline-secondary {
+            background: transparent;
+            color: var(--primary-2);
+            border-color: var(--primary-2);
+        }
+
+        .btn-outline-secondary:hover {
+            background: var(--primary-2);
+            color: white;
+        }
+
+        /* hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-2);
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 30%;
+            left: 15%;
+            width: 200px;
+            height: 200px;
+            background: var(--primary-1);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .hero .hero-accent {
+            color: var(--primary-1);
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero .btn {
+            font-size: 1.1rem;
+            padding: 1.2rem 2.5rem;
+            margin: 0 1rem 1rem 0;
+        }
+
+        /* section styels */
+        .section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .mission {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-1);
+        }
+
+        .mission-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+        }
+
+        .benefits {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .benefits::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-2);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: white;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-1);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .benefit-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary-2);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-family: 'Work Sans', sans-serif;
+        }
+
+        .benefit-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin: 0;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .story {
+            position: relative;
+        }
+
+        /* contact */
+        .contact {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-2);
+        }
+
+        .contact .btn {
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: #1F2128;
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-2);
+            border-color: var(--primary-2);
+        }
+
+        .footer-disclaimer {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background: var(--primary-1);
+            margin: 0 auto 2rem;
+        }
+
+        /* mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid var(--text-primary);
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--text-primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+
+            .nav-buttons .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 0 1rem;
+            }
+
+            .hero .btn {
+                display: block;
+                margin: 0 0 1rem 0;
+                width: 100%;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        .geometric-accent {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--primary-1);
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+        }
+
+        .geometric-accent.secondary {
+            border-color: var(--primary-2);
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <h1>Pausing Operations Until 2031</h1>
+    <!-- nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Laius Group</a>
+            <ul class="nav-links">
+                <li><a href="#products">Products</a></li>
+                <li><a href="#company">Company</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#getintouch">Get In Touch</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#contact" class="btn btn-outline-secondary">Contact Us</a>
+                <a href="mailto:collaborate@laiusgroup.com" class="btn btn-primary">Collaborate</a>
+            </div>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
 
-  <h2>Our Vision</h2>
-  <p>
-    We’re taking a six-year (6-year) pause so our team can focus on laying a solid foundation behind the scenes. Right now, we’re designing systems, building infrastructure, and planning every detail to ensure that when Laius Group officially launches in 2031 with headquarters in Warsaw, we deliver top-quality digital agency and cloud hosting services. Laius Group isn’t just about services - it’s about creating a new standard. We’re fusing tech and creativity into tools that empower businesses, creators, and communities around the globe. Long-term thinking, built from the ground up.
-  </p>
+    <!-- hero -->
+    <section class="hero">
+        <div class="geometric-accent" style="top: 15%; right: 10%;"></div>
+        <div class="geometric-accent secondary" style="bottom: 25%; left: 8%;"></div>
+        <div class="hero-content">
+            <h1>The <span class="hero-accent">Cloud</span> That Powers <span class="hero-accent">Creators</span>.</h1>
+            <p>Empowering developers, creators, and agencies with reliable cloud infrastructure and premium digital services. Built for innovation, designed for freedom.</p>
+            <a href="#mission" class="btn btn-primary">Learn More</a>
+            <a href="#contact" class="btn btn-outline-secondary">Contact Us</a>
+        </div>
+    </section>
 
-  <h2>Why Not Launch Now?</h2>
-  <p>
-    We could launch early - but we’d rather do it right. Building world-class tools, servers, and systems takes time. We want everything to be chef’s kiss from day one.
-  </p>
+    <section class="section mission" id="mission">
+        <div class="container">
+            <h2 class="section-title">The Mission</h2>
+            <div class="accent-line"></div>
+            <div class="section-content">
+                <p class="mission-text">I’m Igor Kalen, the person behind Laius Group, and I’m on a mission to simplify and empower the digital world for developers, creators, and agencies — with reliable cloud infrastructure and high-quality digital services.</p>
+            </div>
+        </div>
+    </section>
 
-  <h2>What We're Working On</h2>
-  <p>
-    Our team is building everything you need for a seamless digital experience: from tailored website design and eye-catching graphic assets, to social media management, brand kit creation, intuitive UI/UX workflows, video editing, and digital marketing strategies. On the cloud side, we’re laying the groundwork for a robust platform offering VPS hosting, website hosting, cloud storage, and WordPress hosting - both managed and unmanaged.
-  </p>
+    <!-- services -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 class="section-title">What We're Building</h2>
+            <div class="accent-line"></div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>VPS hosting, storage solutions, and cloud compute power for scalable applications that grow with your business.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Creative Services</h3>
+                    <p>Web design, graphic design, and branding solutions for modern businesses that need to stand out.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Developer Tools</h3>
+                    <p>APIs, white-label infrastructure, and development resources for builders who create amazing things.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📡</div>
+                    <h3>Digital Services</h3>
+                    <p>Email services, domain registration, and social media management for comprehensive digital presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <h2>Why It’s Worth the Wait</h2>
-  <p>
-    Pausing operations gives us the time and focus to perfect every detail before we launch. We’re researching cutting-edge infrastructure, refining our processes, and ensuring rock-solid reliability (99.994% SLA*). This strategic break also helps us build a strong team culture, implement transparent pricing, and create automated workflows so you get the best service from day one in 2031.
-  </p>
+    <section class="section story" id="company">
+        <div class="container">
+            <h2 class="section-title">The Story</h2>
+            <div class="accent-line"></div>
+            <div class="section-content">
+                <p>I started working with servers while still in primary school. That early curiosity turned into a vision — to build a flexible digital platform that supports creativity, reliability, and freedom.</p>
+                <p>After years of experience in the digital space, I'm now preparing to launch something truly special. A hybrid platform that combines the best of cloud infrastructure with premium creative services, designed for the next generation of digital innovators.</p>
+            </div>
+        </div>
+    </section>
 
-  <h2>What to Expect</h2>
-  <p>
-    In 2031, expect blazing-fast infrastructure, insanely good design, and a Gen-Z-powered agency that just gets it. We’re not building a basic service - we’re creating something unforgettable.
-  </p>
+    <section class="section benefits" id="solutions">
+        <div class="container">
+            <h2 class="section-title">Building the Future Team</h2>
+            <div class="accent-line"></div>
+            <div class="section-content">
+                <p>I'm planning some of the most worker-friendly perks in the industry: remote-first flexibility, clear communication, great pay, and a culture focused on creativity and innovation.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏠</div>
+                    <div class="benefit-content">
+                        <h3>Remote-First Culture</h3>
+                        <p>Work from anywhere with flexible schedules and async collaboration tools that respect your time.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💎</div>
+                    <div class="benefit-content">
+                        <h3>Competitive Compensation</h3>
+                        <p>Great pay with equity options and performance-based bonuses that reward excellence.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h3>Creative Freedom</h3>
+                        <p>Encourage innovation and creative problem-solving in all roles with autonomy to excel.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <div class="benefit-content">
+                        <h3>Growth Opportunities</h3>
+                        <p>Continuous learning budget and career development programs for professional advancement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <br>
+    <section class="section contact" id="getintouch">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="accent-line"></div>
+            <div class="section-content">
+                <p>Interested in what we're building? Want to be part of the journey? Let's connect and explore the possibilities together.</p>
+                <a href="mailto:hello@laiusgroup.com" class="btn btn-primary">hello@laiusgroup.com</a>
+            </div>
+        </div>
+    </section>
 
-  <p style="color: #bbb; font-size: 0.85rem;">
-    For inquiries before 2031, please contact us via our <a href="https://www.spaceship.com/domains/whois/contact/?d=laiusgroup.com">WHOIS contact form</a> for this domain.<br>
-    Thank you for your patience and support. We can’t wait to show you what we’ve built. See you in 2031! 👋<br>
-    *SLA not guaranteed. 99.994% is our target based on current infrastructure planning, but it’s subject to change before launch.
-  </p>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:hello@laiusgroup.com">Contact</a>
+                <a href="mailto:collaborate@laiusgroup.com">Collaborate</a>
+            </div>
+            <div class="footer-disclaimer">
+                © 2025 Laius Group. Launching in 2031.
+            </div>
+        </div>
+    </footer>
 
-  <p class="footer-note">
-    © 2025 Laius Group. All Rights Reserved<br>
-    This page was last reviewed in July 2025. Our full relaunch is scheduled for 2031.
-  </p>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"959920d29f9feeb7","version":"2025.6.2","r":1,"token":"01f3740822a645038490117b9243d75a","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px)';
+                this.style.boxShadow = '0 8px 25px rgba(92, 0, 255, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        document.querySelectorAll('.benefit-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 6px 20px rgba(47, 232, 198, 0.15)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // pulse effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const geometricElements = document.querySelectorAll('.geometric-accent');
+            
+            geometricElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.2);
+                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        const serviceCards = document.querySelectorAll('.service-card');
+        const servicesObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        serviceCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            servicesObserver.observe(card);
+        });
+
+        const benefitItems = document.querySelectorAll('.benefit-item');
+        const benefitsObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        benefitItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-30px)';
+            item.style.transition = 'all 0.6s ease';
+            benefitsObserver.observe(item);
+        });
+    </script>
 </body>
 </html>
